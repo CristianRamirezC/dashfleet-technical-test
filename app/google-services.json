@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "354540751617",
+    "project_id": "dashfleet-technical-test",
+    "storage_bucket": "dashfleet-technical-test.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:354540751617:android:2e82a1ae6ee1a9731da900",
+        "android_client_info": {
+          "package_name": "com.example.dashfleet_technical_test"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "354540751617-44o1ouc7t45nsu4puc0diojsd2tlp1u5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDbL2V8_el9T_0QALsvBDQUXsTcdLZ6FRk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "354540751617-44o1ouc7t45nsu4puc0diojsd2tlp1u5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
