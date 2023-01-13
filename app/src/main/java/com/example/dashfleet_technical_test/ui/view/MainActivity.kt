@@ -1,4 +1,4 @@
-package com.example.dashfleet_technical_test
+package com.example.dashfleet_technical_test.ui.view
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
