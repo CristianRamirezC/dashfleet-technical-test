@@ -1,10 +1,10 @@
 package com.example.dashfleet_technical_test.data.network.user
 
-import com.example.dashfleet_technical_test.data.model.user.UserLoginResponseModel
 import com.example.dashfleet_technical_test.data.model.user.UserModel
 import com.google.firebase.firestore.FirebaseFirestore
+import javax.inject.Inject
 
-class UserApiClient {
+class UserApiClient @Inject constructor() {
     suspend fun getUser(userPhoneNumber: Int): UserModel {
         val db = FirebaseFirestore.getInstance()
         lateinit var user: UserModel
