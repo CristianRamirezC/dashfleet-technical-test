@@ -7,7 +7,7 @@ import javax.inject.Inject
 class UserRepository @Inject constructor(
     private val api: UserService
 ) {
-    suspend fun loginUser(userPhoneNumber: Int, userPassword: String): UserLoginResponseModel {
+    suspend fun loginUser(userPhoneNumber: String, userPassword: String): UserLoginResponseModel {
         return api.loginUser(userPhoneNumber, userPassword)
     }
 }
