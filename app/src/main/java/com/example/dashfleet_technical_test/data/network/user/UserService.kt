@@ -9,10 +9,12 @@ import javax.inject.Inject
 class UserService @Inject constructor(
     private val api: UserApiClient
 ) {
-    suspend fun loginUser(userPhoneNumber: String, userPassword: String): UserLoginResponseModel {
+    suspend fun loginUser(
+        userPhoneNumber: String,
+        userPassword: String
+    ): UserLoginResponseModel {
         return withContext(Dispatchers.IO) {
             val response = api.getUser(userPhoneNumber)
-            runBlocking { }
             if (response.userPassword == userPassword) {
                 UserLoginResponseModel(
                     response.userId,

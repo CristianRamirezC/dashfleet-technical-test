@@ -11,7 +11,11 @@ class UserApiClient @Inject constructor(
     private val db: FirebaseFirestore
 ) {
     suspend fun getUser(userPhoneNumber: String): UserModel {
-        val user = db.collection("users").document(userPhoneNumber).get().await()
+        val user = db.
+        collection("users").
+        document(userPhoneNumber).
+        get().
+        await()
         return UserModel(
             userId = user.get("id") as Long,
             userName = user.get("name") as String,
