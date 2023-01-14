@@ -7,9 +7,10 @@ import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.tasks.await
 import javax.inject.Inject
 
-class UserApiClient @Inject constructor() {
+class UserApiClient @Inject constructor(
+    private val db: FirebaseFirestore
+) {
     suspend fun getUser(userPhoneNumber: String): UserModel {
-        val db = FirebaseFirestore.getInstance()
         val user = db.collection("users").document(userPhoneNumber).get().await()
         return UserModel(
             userId = user.get("id") as Long,

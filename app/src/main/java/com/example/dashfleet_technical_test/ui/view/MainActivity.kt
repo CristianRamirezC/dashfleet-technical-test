@@ -26,8 +26,8 @@ class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val phoneNumber: String = "3136756532"
-        userViewModel.loginUser(phoneNumber, "dashfleet2")
+        val phoneNumber: String = "3136756531"
+        userViewModel.loginUser(phoneNumber, "dashfleet1")
         setContent {
             DashfleettechnicaltestTheme {
                 // A surface container using the 'background' color from the theme
