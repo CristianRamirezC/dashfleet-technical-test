@@ -4,17 +4,19 @@ import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.setValue
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.Visibility
+import androidx.compose.material.icons.outlined.VisibilityOff
+import androidx.compose.runtime.*
 import androidx.compose.runtime.livedata.observeAsState
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -101,7 +103,6 @@ fun PhoneNumberField(userPhoneNumber: String, onTextChanged: (String) -> Unit) {
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(top = 10.dp),
-//            label = { Text(text = "Phone Number") },
             maxLines = 1,
             singleLine = true,
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Phone),
@@ -117,6 +118,7 @@ fun PhoneNumberField(userPhoneNumber: String, onTextChanged: (String) -> Unit) {
 
 @Composable
 fun PasswordField(userPassord: String, onTextChanged: (String) -> Unit) {
+    var isPasswordVisible: Boolean by rememberSaveable { mutableStateOf(false) }
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -130,7 +132,6 @@ fun PasswordField(userPassord: String, onTextChanged: (String) -> Unit) {
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(top = 10.dp),
-//            label = { Text(text = "Phone Number") },
             maxLines = 1,
             singleLine = true,
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
@@ -139,7 +140,27 @@ fun PasswordField(userPassord: String, onTextChanged: (String) -> Unit) {
                 backgroundColor = Color.White,
                 focusedBorderColor = Color.Gray,
                 unfocusedBorderColor = Color.Gray
-            )
+            ),
+            trailingIcon = {
+                val passwordVisibilityIcon = if (isPasswordVisible) {
+                    Icons.Outlined.VisibilityOff
+                } else {
+                    Icons.Outlined.Visibility
+                }
+                IconButton(onClick = {
+                    isPasswordVisible = isPasswordVisible.not()
+                }) {
+                    Icon(
+                        imageVector = passwordVisibilityIcon,
+                        contentDescription = "Show password"
+                    )
+                }
+            },
+            visualTransformation = if (isPasswordVisible) {
+                VisualTransformation.None
+            } else {
+                PasswordVisualTransformation()
+            }
         )
     }
 }
