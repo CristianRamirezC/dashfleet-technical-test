@@ -1,5 +1,6 @@
 package com.example.dashfleet_technical_test.data.network.user
 
+import com.example.dashfleet_technical_test.core.constants.FirestoreConstants
 import com.example.dashfleet_technical_test.data.model.user.UserModel
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.launch
@@ -12,15 +13,15 @@ class UserApiClient @Inject constructor(
 ) {
     suspend fun getUser(userPhoneNumber: String): UserModel {
         val user = db.
-        collection("users").
+        collection(FirestoreConstants.USERS).
         document(userPhoneNumber).
         get().
         await()
         return UserModel(
-            userId = user.get("id") as Long,
-            userName = user.get("name") as String,
-            userPassword = user.get("password") as String,
-            userPhoneNumber = user.get("phoneNumber") as String
+            userId = user.get(FirestoreConstants.ID) as Long,
+            userName = user.get(FirestoreConstants.NAME) as String,
+            userPassword = user.get(FirestoreConstants.PASSWORD) as String,
+            userPhoneNumber = user.get(FirestoreConstants.PHONE_NUMBER) as String
         )
     }
 }

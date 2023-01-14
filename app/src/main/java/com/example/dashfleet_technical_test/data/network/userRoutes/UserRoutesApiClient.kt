@@ -1,5 +1,6 @@
 package com.example.dashfleet_technical_test.data.network.userRoutes
 
+import com.example.dashfleet_technical_test.core.constants.FirestoreConstants
 import com.example.dashfleet_technical_test.data.model.userRoutes.RouteModel
 import com.example.dashfleet_technical_test.data.model.userRoutes.UserRoutesModel
 import com.google.firebase.firestore.FirebaseFirestore
@@ -11,7 +12,7 @@ class UserRoutesApiClient @Inject constructor(
 ) {
     suspend fun getUserRoutes(userPhoneNumber: String): UserRoutesModel {
         val userRoutes = db.
-        collection("userRoutes").
+        collection(FirestoreConstants.USER_ROUTES).
         document(userPhoneNumber).
         get().
         await().
