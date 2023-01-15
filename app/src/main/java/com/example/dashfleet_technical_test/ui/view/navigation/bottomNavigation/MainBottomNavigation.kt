@@ -1,4 +1,4 @@
-package com.example.dashfleet_technical_test.ui.view.bottomNavigation
+package com.example.dashfleet_technical_test.ui.view.navigation.bottomNavigation
 
 import androidx.compose.material.BottomNavigation
 import androidx.compose.material.BottomNavigationItem
@@ -40,12 +40,10 @@ fun MainBottomNavigation(navController: NavController, bottomNavItems: List<NavI
                 selected = currentRoute == item.screenRoute,
                 onClick = {
                     navController.navigate(item.screenRoute) {
-
                         navController.graph.startDestinationRoute?.let { screenRoute ->
                             popUpTo(screenRoute) {
                                 saveState = true
                             }
-
                         }
                         launchSingleTop = true
                         restoreState = true

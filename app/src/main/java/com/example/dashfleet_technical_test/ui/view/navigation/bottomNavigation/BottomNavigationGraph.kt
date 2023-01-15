@@ -1,4 +1,4 @@
-package com.example.dashfleet_technical_test.ui.view.bottomNavigation
+package com.example.dashfleet_technical_test.ui.view.navigation.bottomNavigation
 
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
@@ -9,7 +9,7 @@ import com.example.dashfleet_technical_test.ui.view.routesScreen.RoutesScreen
 import com.example.dashfleet_technical_test.ui.view.userScreen.UserScreen
 
 @Composable
-fun NavigationGraph(navController: NavHostController) {
+fun BottomNavigationGraph(navController: NavHostController) {
     NavHost(
         navController = navController,
         startDestination = NavItem.Home.screenRoute

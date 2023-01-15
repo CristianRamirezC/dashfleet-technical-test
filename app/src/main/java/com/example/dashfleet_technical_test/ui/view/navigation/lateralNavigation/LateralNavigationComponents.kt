@@ -1,11 +1,13 @@
-package com.example.dashfleet_technical_test.ui.view.lateralNavigation
+package com.example.dashfleet_technical_test.ui.view.navigation.lateralNavigation
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
 import androidx.compose.material.Icon
+import androidx.compose.material.ScaffoldState
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -14,15 +16,37 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
 import com.example.dashfleet_technical_test.R
-import com.example.dashfleet_technical_test.ui.view.bottomNavigation.NavItem
+import com.example.dashfleet_technical_test.ui.view.navigation.bottomNavigation.NavItem
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.launch
 
 @Composable
-fun Drawer(lateralNavItem: List<NavItem>) {
+fun Drawer(
+    lateralNavItem: List<NavItem>,
+    scope: CoroutineScope,
+    scaffoldState: ScaffoldState,
+    navController: NavHostController
+) {
     DrawerHeader()
     Column() {
         lateralNavItem.forEach { navItem ->
-            ItemDrawer(navItem = navItem)
+            ItemDrawer(navItem = navItem) {
+                navController.navigate(navItem.screenRoute) {
+                    //avoid creating new instances if is already on top on stack
+                    navController.graph.startDestinationRoute?.let { screenRoute ->
+                        popUpTo(screenRoute) {
+                            saveState = true
+                        }
+                    }
+                    launchSingleTop = true
+                    restoreState = true
+                }
+                scope.launch {
+                    scaffoldState.drawerState.close()
+                }
+            }
         }
     }
 }
@@ -46,7 +70,7 @@ fun DrawerHeader() {
                 contentDescription = "Profile picture"
             )
         }
-        Spacer(modifier = Modifier.height(10.dp))
+        Spacer(modifier = Modifier.height(20.dp))
         Text(
             modifier = Modifier.align(Alignment.CenterHorizontally),
             text = "Name", fontSize = 20.sp
@@ -55,7 +79,11 @@ fun DrawerHeader() {
 }
 
 @Composable
-fun ItemDrawer(modifier: Modifier = Modifier, navItem: NavItem) {
+fun ItemDrawer(
+    modifier: Modifier = Modifier,
+    navItem: NavItem,
+    onItemSelected: (NavItem) -> Unit
+) {
     Row(
         modifier = modifier
             .fillMaxWidth()
@@ -63,6 +91,7 @@ fun ItemDrawer(modifier: Modifier = Modifier, navItem: NavItem) {
             .padding(10.dp)
             .clip(RoundedCornerShape(10))
             .padding(8.dp)
+            .clickable { onItemSelected(navItem) }
     ) {
         Icon(
             modifier = Modifier.size(30.dp),
