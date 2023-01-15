@@ -47,7 +47,7 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colors.background
                 ) {
                     val isUserLogged by userLoginViewModel.userAbleToLogin.observeAsState(initial = false)
-                    if (isUserLogged) {
+                    if (!isUserLogged) {
                         MainNavigationScreenView(userLoginViewModel)
                     } else {
                         LoginScreen(userLoginViewModel = userLoginViewModel)
