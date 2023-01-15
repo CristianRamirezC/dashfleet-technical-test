@@ -12,17 +12,17 @@ import com.example.dashfleet_technical_test.ui.view.userScreen.UserScreen
 fun NavigationGraph(navController: NavHostController) {
     NavHost(
         navController = navController,
-        startDestination = BottomNavItem.Home.screenRoute
+        startDestination = NavItem.Home.screenRoute
     ) {
-        composable(route = BottomNavItem.Home.screenRoute) {
+        composable(route = NavItem.Home.screenRoute) {
             HomeScreen()
         }
 
-        composable(route = BottomNavItem.Routes.screenRoute) {
+        composable(route = NavItem.Routes.screenRoute) {
             RoutesScreen()
         }
 
-        composable(route = BottomNavItem.User.screenRoute) {
+        composable(route = NavItem.User.screenRoute) {
             UserScreen()
         }
     }

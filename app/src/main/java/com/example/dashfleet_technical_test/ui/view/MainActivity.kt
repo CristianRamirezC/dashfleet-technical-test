@@ -38,22 +38,8 @@ class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         setContent {
-            DashfleetTechnicalTestTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colors.background
-                ) {
-                    val isUserLogged by userLoginViewModel.userAbleToLogin.observeAsState(initial = false)
-                    if (!isUserLogged) {
-                        MainNavigationScreenView(userLoginViewModel)
-                    } else {
-                        LoginScreen(userLoginViewModel = userLoginViewModel)
-                    }
-                }
-            }
+            MainView(userLoginViewModel)
         }
     }
 }

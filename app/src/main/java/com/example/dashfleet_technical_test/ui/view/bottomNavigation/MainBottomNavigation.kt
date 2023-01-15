@@ -13,13 +13,7 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
 
 @Composable
-fun MainBottomNavigation(navController: NavController) {
-    val bottomNavItems = listOf(
-        BottomNavItem.Home,
-        BottomNavItem.Routes,
-        BottomNavItem.User
-    )
-
+fun MainBottomNavigation(navController: NavController, bottomNavItems: List<NavItem>) {
     BottomNavigation(
         backgroundColor = Color.White,
         contentColor = Color.Black
