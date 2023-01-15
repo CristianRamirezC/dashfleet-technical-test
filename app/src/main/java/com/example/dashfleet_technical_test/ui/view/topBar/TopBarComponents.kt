@@ -7,6 +7,8 @@ import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
@@ -14,11 +16,17 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.dashfleet_technical_test.R
+import com.example.dashfleet_technical_test.ui.viewModel.user.UserLoginViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
 @Composable
-fun MainTopBar(scope: CoroutineScope, scaffoldState: ScaffoldState) {
+fun MainTopBar(
+    scope: CoroutineScope,
+    scaffoldState: ScaffoldState,
+    userLoginViewModel: UserLoginViewModel,
+
+    ) {
     TopAppBar(
         modifier = Modifier
             .fillMaxWidth()
@@ -32,7 +40,7 @@ fun MainTopBar(scope: CoroutineScope, scaffoldState: ScaffoldState) {
             horizontalArrangement = Arrangement.SpaceAround,
         ) {
             TopBarProfilePicture()
-            TopBarUserInfo()
+            TopBarUserInfo(userLoginViewModel)
             TopBarLateralMenuButton(scope, scaffoldState)
         }
     }
@@ -59,16 +67,25 @@ fun TopBarLateralMenuButton(scope: CoroutineScope, scaffoldState: ScaffoldState)
 }
 
 @Composable
-fun TopBarUserInfo() {
+fun TopBarUserInfo(
+    userLoginViewModel: UserLoginViewModel,
+) {
+
+    val userName by userLoginViewModel.userName.observeAsState()
+    val userPhoneNumber by userLoginViewModel.userPhoneNumber.observeAsState()
     Column(
         modifier = Modifier
     ) {
         Text(
-            text = "Name",
+            text = userName!!,
             fontSize = 20.sp,
             fontWeight = FontWeight.Black
         )
-        Text(text = "3136756531")
+        Spacer(modifier = Modifier.height(6.dp))
+        Text(
+            modifier = Modifier,
+            text = userPhoneNumber!!
+        )
     }
 }
 

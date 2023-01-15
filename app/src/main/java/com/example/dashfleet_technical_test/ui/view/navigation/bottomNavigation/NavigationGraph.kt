@@ -31,7 +31,7 @@ fun NavigationGraph(
         }
 
         composable(route = NavItem.User.screenRoute) {
-            UserScreen()
+            UserScreen(userLoginViewModel)
         }
     }
 }

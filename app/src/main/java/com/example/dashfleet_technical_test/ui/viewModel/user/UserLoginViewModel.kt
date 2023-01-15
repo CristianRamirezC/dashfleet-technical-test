@@ -60,6 +60,16 @@ class UserLoginViewModel @Inject constructor(
         }
     }
 
+    fun logout() {
+        _isLoading.postValue(true)
+        _userName.postValue("")
+        _userId.postValue(0L)
+        _userAbleToLogin.postValue(false)
+        _userPhoneNumber.postValue("")
+        _isLoading.postValue(false)
+
+    }
+
     fun onLoginChanged(userPhoneNumber: String, userPassword: String) {
         _userPhoneNumber.value = userPhoneNumber
         _userPassword.value = userPassword

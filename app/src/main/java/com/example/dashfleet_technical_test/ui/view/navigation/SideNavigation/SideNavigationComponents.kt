@@ -1,4 +1,4 @@
-package com.example.dashfleet_technical_test.ui.view.navigation.lateralNavigation
+package com.example.dashfleet_technical_test.ui.view.navigation.SideNavigation
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
@@ -10,6 +10,8 @@ import androidx.compose.material.Icon
 import androidx.compose.material.ScaffoldState
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -19,19 +21,21 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.example.dashfleet_technical_test.R
 import com.example.dashfleet_technical_test.ui.view.navigation.bottomNavigation.NavItem
+import com.example.dashfleet_technical_test.ui.viewModel.user.UserLoginViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
 @Composable
 fun Drawer(
-    lateralNavItem: List<NavItem>,
+    sideNavItem: List<NavItem>,
     scope: CoroutineScope,
     scaffoldState: ScaffoldState,
-    navController: NavHostController
+    navController: NavHostController,
+    userLoginViewModel: UserLoginViewModel
 ) {
-    DrawerHeader()
+    DrawerHeader(userLoginViewModel)
     Column() {
-        lateralNavItem.forEach { navItem ->
+        sideNavItem.forEach { navItem ->
             ItemDrawer(navItem = navItem) {
                 navController.navigate(navItem.screenRoute) {
                     //avoid creating new instances if is already on top on stack
@@ -52,7 +56,11 @@ fun Drawer(
 }
 
 @Composable
-fun DrawerHeader() {
+fun DrawerHeader(
+    userLoginViewModel: UserLoginViewModel
+) {
+
+    val userName by userLoginViewModel.userName.observeAsState()
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -73,7 +81,7 @@ fun DrawerHeader() {
         Spacer(modifier = Modifier.height(20.dp))
         Text(
             modifier = Modifier.align(Alignment.CenterHorizontally),
-            text = "Name", fontSize = 20.sp
+            text = userName!!, fontSize = 20.sp
         )
     }
 }

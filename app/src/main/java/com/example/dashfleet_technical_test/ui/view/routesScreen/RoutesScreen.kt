@@ -12,6 +12,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.Dp
@@ -31,6 +32,7 @@ fun RoutesScreen(
     Column(
         modifier = Modifier
             .fillMaxWidth()
+            .fillMaxHeight()
             .padding
                 (
                 top = 30.dp,
@@ -68,7 +70,7 @@ fun RenderRouteItem(
         modifier = Modifier
             .fillMaxWidth()
             .height(100.dp)
-            .padding(top = 20.dp),
+            .padding(12.dp),
         elevation = 4.dp
     ) {
         Row() {

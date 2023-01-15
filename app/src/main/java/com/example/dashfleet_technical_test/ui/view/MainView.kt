@@ -45,9 +45,7 @@ fun GetUserRoutes(
         .userPhoneNumber
         .observeAsState()
 
-    LaunchedEffect(key1 = Unit, block = {
-        userRoutesViewModel.getUserRoutes(userPhoneNumber!!)
-    })
+    userRoutesViewModel.getUserRoutes(userPhoneNumber!!)
 
 }
 

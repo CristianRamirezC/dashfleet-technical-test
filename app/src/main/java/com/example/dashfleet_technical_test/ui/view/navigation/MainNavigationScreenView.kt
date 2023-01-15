@@ -10,7 +10,7 @@ import androidx.navigation.compose.rememberNavController
 import com.example.dashfleet_technical_test.ui.view.navigation.bottomNavigation.MainBottomNavigation
 import com.example.dashfleet_technical_test.ui.view.navigation.bottomNavigation.NavItem
 import com.example.dashfleet_technical_test.ui.view.navigation.bottomNavigation.NavigationGraph
-import com.example.dashfleet_technical_test.ui.view.navigation.lateralNavigation.Drawer
+import com.example.dashfleet_technical_test.ui.view.navigation.SideNavigation.Drawer
 import com.example.dashfleet_technical_test.ui.view.topBar.MainTopBar
 import com.example.dashfleet_technical_test.ui.view.util.LoadingView
 import com.example.dashfleet_technical_test.ui.viewModel.user.UserLoginViewModel
@@ -39,14 +39,15 @@ fun MainNavigationScreenView(
         },
         scaffoldState = scaffoldState,
         topBar = {
-            MainTopBar(scope, scaffoldState)
+            MainTopBar(scope, scaffoldState, userLoginViewModel)
         },
         drawerContent = {
             Drawer(
-                lateralNavItem = routeDestinations,
+                sideNavItem = routeDestinations,
                 scope = scope,
                 scaffoldState = scaffoldState,
-                navController = navController
+                navController = navController,
+                userLoginViewModel = userLoginViewModel,
             )
         }
     ) {
