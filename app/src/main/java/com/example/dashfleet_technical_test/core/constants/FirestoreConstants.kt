@@ -11,7 +11,7 @@ object FirestoreConstants {
     const val ABLE_TO_LOGIN: String = "ableToLogin"
 
     const val ROUTE_NAME: String = "routeName"
-    const val ROUTE_DISTANCE: String = "routeName"
+    const val ROUTE_DISTANCE: String = "routeDistance"
     const val ROUTES: String = "routes"
     const val USER_ID: String = "userId"
 }

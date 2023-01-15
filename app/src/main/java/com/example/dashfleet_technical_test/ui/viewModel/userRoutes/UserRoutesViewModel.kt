@@ -18,11 +18,16 @@ class UserRoutesViewModel @Inject constructor(
     private var _userRoutes = MutableLiveData<UserRoutes>()
     val userRoutes: LiveData<UserRoutes> = _userRoutes
 
+    private val _isLoading = MutableLiveData<Boolean>()
+    val isLoading: LiveData<Boolean> = _isLoading
+
 
     fun getUserRoutes(userPhoneNumber: String) {
         viewModelScope.launch {
+            _isLoading.postValue(true)
             val userRoutes: UserRoutes = getUserRoutesFirestore(userPhoneNumber)
             _userRoutes.postValue(userRoutes)
+            _isLoading.postValue(false)
         }
     }
 }
