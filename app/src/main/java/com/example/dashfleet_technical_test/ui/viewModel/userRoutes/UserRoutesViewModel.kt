@@ -12,7 +12,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class UserRoutesViewModel @Inject constructor(
-    private val getUserRoutesFirestore: GetUserRoutesFirestoreUseCase
+    private val getUserRoutesFirestoreUseCase: GetUserRoutesFirestoreUseCase
 ) : ViewModel() {
     private var _userRoutes = MutableLiveData<UserRoutes>()
     val userRoutes: LiveData<UserRoutes> = _userRoutes
@@ -24,7 +24,7 @@ class UserRoutesViewModel @Inject constructor(
     fun getUserRoutes(userPhoneNumber: String) {
         viewModelScope.launch {
             _isLoading.postValue(true)
-            val userRoutes: UserRoutes = getUserRoutesFirestore(userPhoneNumber)
+            val userRoutes: UserRoutes = getUserRoutesFirestoreUseCase(userPhoneNumber)
             _userRoutes.postValue(userRoutes)
             _isLoading.postValue(false)
         }

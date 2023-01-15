@@ -13,7 +13,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class UserLoginViewModel @Inject constructor(
-    private val loginUserCase: LoginUserFirestoreUseCase
+    private val loginUserUseCase: LoginUserFirestoreUseCase
 ) : ViewModel() {
     private var _userName = MutableLiveData<String>()
     val userName: LiveData<String> = _userName
@@ -40,15 +40,21 @@ class UserLoginViewModel @Inject constructor(
     val isErrorLogging: LiveData<Boolean> = _isErrorLogging
 
 
-    fun loginUser() {
+    fun loginUser(userPhoneNumber: String, userPassword: String) {
         viewModelScope.launch {
             _isLoading.postValue(true)
             val user: UserLoginResponse =
-                loginUserCase(userPhoneNumber.value!!, userPassword.value!!)
+                loginUserUseCase(userPhoneNumber, userPassword)
             _userPassword.postValue("")
 
-            if (user.userId == null && user.userName == null && user.userPhoneNumber == null) {
+            if (
+                user.userId == null &&
+                user.userName == null &&
+                user.userPhoneNumber == null &&
+                !user.ableToLogin
+            ) {
                 _isErrorLogging.postValue(true)
+                _userAbleToLogin.postValue(false)
             } else {
                 _userName.postValue(user.userName)
                 _userId.postValue(user.userId)
@@ -60,12 +66,14 @@ class UserLoginViewModel @Inject constructor(
         }
     }
 
-    fun logout() {
+    fun logoutUser() {
         _isLoading.postValue(true)
+
         _userName.postValue("")
         _userId.postValue(0L)
         _userAbleToLogin.postValue(false)
         _userPhoneNumber.postValue("")
+
         _isLoading.postValue(false)
 
     }
@@ -78,6 +86,6 @@ class UserLoginViewModel @Inject constructor(
 
     }
 
-    fun enableLoginButton(userPhoneNumber: String, userPassword: String) =
+    private fun enableLoginButton(userPhoneNumber: String, userPassword: String) =
         Patterns.PHONE.matcher(userPhoneNumber).matches() && userPassword.isNotEmpty()
 }

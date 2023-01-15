@@ -8,6 +8,7 @@ import androidx.compose.material.icons.outlined.Visibility
 import androidx.compose.material.icons.outlined.VisibilityOff
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
@@ -168,6 +169,10 @@ fun LoginButton(
     loginViewModel: UserLoginViewModel,
     isLoading: Boolean
 ) {
+
+    val userPhoneNumber by loginViewModel.userPhoneNumber.observeAsState()
+    val userPassword by loginViewModel.userPassword.observeAsState()
+
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -176,7 +181,7 @@ fun LoginButton(
     ) {
         Button(
             onClick = {
-                loginViewModel.loginUser()
+                loginViewModel.loginUser(userPhoneNumber!!, userPassword!!)
             },
             modifier = Modifier
                 .fillMaxWidth()

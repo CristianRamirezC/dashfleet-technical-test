@@ -53,7 +53,7 @@ fun LogoutButton(
             .fillMaxWidth()
             .padding(horizontal = 40.dp),
         onClick = {
-            userLoginViewModel.logout()
+            userLoginViewModel.logoutUser()
         },
     ) {
         Text(
