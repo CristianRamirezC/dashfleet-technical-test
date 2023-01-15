@@ -15,6 +15,7 @@ import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
 import com.example.dashfleet_technical_test.domain.model.userRoutes.UserRoutes
 import com.example.dashfleet_technical_test.ui.theme.DashfleetTechnicalTestTheme
+import com.example.dashfleet_technical_test.ui.view.bottomNavigation.MainNavigationScreenView
 import com.example.dashfleet_technical_test.ui.view.loginScreen.LoginScreen
 import com.example.dashfleet_technical_test.ui.viewModel.user.UserLoginViewModel
 import com.example.dashfleet_technical_test.ui.viewModel.userRoutes.UserRoutesViewModel
@@ -38,19 +39,13 @@ class MainActivity : ComponentActivity() {
                 ) {
                     val isUserLogged by userLoginViewModel.userAbleToLogin.observeAsState(initial = false)
                     if (isUserLogged) {
-                        HomeScreen()
+                        MainNavigationScreenView()
                     } else {
                         LoginScreen(userLoginViewModel)
                     }
-//
                 }
             }
         }
     }
 }
 
-
-@Composable
-fun HomeScreen() {
-    Text(text = "Home Screen")
-}
