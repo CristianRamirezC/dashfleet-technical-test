@@ -1,6 +1,5 @@
 package com.example.dashfleet_technical_test.ui.view.loginScreen
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
@@ -22,6 +21,7 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.dashfleet_technical_test.core.constants.AppStringConstants
 import com.example.dashfleet_technical_test.ui.viewModel.user.UserLoginViewModel
 
 @Composable
@@ -37,14 +37,14 @@ fun LoginTopBar() {
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Text(
-                text = "DASHFLEET APP",
+                text = AppStringConstants.APP_NAME,
                 color = Color.White,
                 fontSize = 30.sp,
                 textAlign = TextAlign.Center,
                 fontWeight = FontWeight.Black
             )
             Text(
-                text = "Login",
+                text = AppStringConstants.LOGIN,
                 color = Color.White,
                 fontSize = 30.sp,
                 textAlign = TextAlign.Center,
@@ -62,7 +62,7 @@ fun PhoneNumberField(userPhoneNumber: String, onTextChanged: (String) -> Unit) {
             .fillMaxWidth()
             .padding(top = 45.dp, start = 15.dp, end = 15.dp)
     ) {
-        Text(text = "Phone Number")
+        Text(text = AppStringConstants.PHONE_NUMBER)
         OutlinedTextField(
             value = userPhoneNumber, onValueChange = {
                 onTextChanged(it)
@@ -89,7 +89,7 @@ fun PasswordField(userPassord: String, onTextChanged: (String) -> Unit) {
             .fillMaxWidth()
             .padding(top = 20.dp, start = 15.dp, end = 15.dp)
     ) {
-        Text(text = "Password")
+        Text(text = AppStringConstants.PASSWORD)
         OutlinedTextField(
             value = userPassord, onValueChange = {
                 onTextChanged(it)
@@ -115,7 +115,7 @@ fun PasswordField(userPassord: String, onTextChanged: (String) -> Unit) {
                 }) {
                     Icon(
                         imageVector = passwordVisibilityIcon,
-                        contentDescription = "Show password"
+                        contentDescription = AppStringConstants.SHOW_PASSWORD
                     )
                 }
             },
@@ -148,12 +148,12 @@ fun RememberUserToggle(isErrorLogging: Boolean) {
                     uncheckedThumbColor = Color.DarkGray,
                 ),
             )
-            Text(text = "Remember")
+            Text(text = AppStringConstants.REMEMBER)
         }
         if (isErrorLogging) {
             Text(
                 modifier = Modifier,
-                text = "Please verify your login information or network connection!",
+                text = AppStringConstants.LOGIN_ERROR,
                 color = Color.Red,
                 textAlign = TextAlign.Center,
                 fontWeight = FontWeight.Bold
@@ -186,7 +186,7 @@ fun LoginButton(
         ) {
             if (!isLoading) {
                 Text(
-                    text = "Login",
+                    text = AppStringConstants.LOGIN,
                     fontSize = 25.sp
                 )
             } else {
@@ -200,7 +200,7 @@ fun LoginButton(
 
         }
         Text(
-            text = "Forgot Password?",
+            text = AppStringConstants.FORGOT_PASSWORD,
             modifier = Modifier.padding(top = 15.dp)
         )
     }

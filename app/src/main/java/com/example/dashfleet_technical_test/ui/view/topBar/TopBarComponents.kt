@@ -16,6 +16,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.dashfleet_technical_test.R
+import com.example.dashfleet_technical_test.core.constants.AppStringConstants
 import com.example.dashfleet_technical_test.ui.viewModel.user.UserLoginViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
@@ -60,7 +61,7 @@ fun TopBarLateralMenuButton(scope: CoroutineScope, scaffoldState: ScaffoldState)
             Icon(
                 modifier = Modifier.size(40.dp),
                 imageVector = Icons.Filled.Menu,
-                contentDescription = "Menu button"
+                contentDescription = AppStringConstants.MENU_BUTTON
             )
         }
     }
@@ -98,7 +99,7 @@ fun TopBarProfilePicture() {
     ) {
         Image(
             painter = painterResource(R.drawable.profile_picture),
-            contentDescription = "profile picture"
+            contentDescription = AppStringConstants.PROFILE_PICTURE
         )
     }
 }

@@ -8,7 +8,6 @@ import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
 import com.example.dashfleet_technical_test.ui.viewModel.user.UserLoginViewModel
 
-@SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
 fun LoginScreen(userLoginViewModel: UserLoginViewModel) {
 
@@ -39,7 +38,9 @@ fun LoginScreen(userLoginViewModel: UserLoginViewModel) {
         modifier = Modifier.fillMaxSize()
     ) {
 
-        Column() {
+        Column(
+            modifier = Modifier.padding(top = it.calculateTopPadding())
+        ) {
             PhoneNumberField(userPhoneNumber = userPhoneNumber) {
                 userLoginViewModel.onLoginChanged(userPhoneNumber = it, userPassword = userPassword)
             }

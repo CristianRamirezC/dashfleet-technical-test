@@ -20,6 +20,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.example.dashfleet_technical_test.R
+import com.example.dashfleet_technical_test.core.constants.AppStringConstants
 import com.example.dashfleet_technical_test.ui.view.navigation.bottomNavigation.NavItem
 import com.example.dashfleet_technical_test.ui.viewModel.user.UserLoginViewModel
 import kotlinx.coroutines.CoroutineScope
@@ -75,7 +76,7 @@ fun DrawerHeader(
         ) {
             Image(
                 painter = painterResource(id = R.drawable.profile_picture),
-                contentDescription = "Profile picture"
+                contentDescription = AppStringConstants.PROFILE_PICTURE
             )
         }
         Spacer(modifier = Modifier.height(20.dp))

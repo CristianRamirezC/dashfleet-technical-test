@@ -11,6 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.dashfleet_technical_test.core.constants.AppStringConstants
 import com.example.dashfleet_technical_test.ui.viewModel.user.UserLoginViewModel
 
 @Composable
@@ -19,9 +20,11 @@ fun UserScreen(
 ) {
     val userName by userLoginViewModel.userName.observeAsState()
     val userPhoneNumber by userLoginViewModel.userPhoneNumber.observeAsState()
-    Column(modifier = Modifier
-        .fillMaxSize()
-        .padding(top = 100.dp)) {
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(top = 100.dp)
+    ) {
         Text(
             modifier = Modifier.align(Alignment.CenterHorizontally),
             text = userName!!,
@@ -47,7 +50,7 @@ fun UserScreen(
         ) {
             Text(
                 modifier = Modifier,
-                text = "Logout",
+                text = AppStringConstants.LOGOUT,
                 fontSize = 20.sp,
                 fontWeight = FontWeight.ExtraBold
             )
