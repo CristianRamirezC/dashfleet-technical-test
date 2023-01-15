@@ -13,7 +13,8 @@ Login simulation app using Firesbase Firestore as API, implemented with:
 -Unit testing with Junit  
 -Mockk  
 
-<img src="images/App1.jpeg" width = "200" height="400">  
+<img src="images/App1.jpeg" width = "300" height="500">  
+
 ![](images/App1.jpeg)  
   
 ![](images/App2.jpeg)  
