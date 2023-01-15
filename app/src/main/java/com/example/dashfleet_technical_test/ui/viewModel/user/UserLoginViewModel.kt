@@ -45,6 +45,7 @@ class UserLoginViewModel @Inject constructor(
             _isLoading.postValue(true)
             val user: UserLoginResponse =
                 loginUserCase(userPhoneNumber.value!!, userPassword.value!!)
+            _userPassword.postValue("")
 
             if (user.userId == null && user.userName == null && user.userPhoneNumber == null) {
                 _isErrorLogging.postValue(true)
@@ -53,10 +54,8 @@ class UserLoginViewModel @Inject constructor(
                 _userId.postValue(user.userId)
                 _userAbleToLogin.postValue(user.ableToLogin)
                 _userPhoneNumber.postValue(user.userPhoneNumber)
+                _isErrorLogging.postValue(false)
             }
-
-
-
             _isLoading.postValue(false)
         }
     }
