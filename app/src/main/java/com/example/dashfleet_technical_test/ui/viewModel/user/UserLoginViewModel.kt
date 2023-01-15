@@ -33,10 +33,14 @@ class UserLoginViewModel @Inject constructor(
     private var _isLoginButtonEnabled = MutableLiveData<Boolean>()
     val isLoginButtonEnabled: LiveData<Boolean> = _isLoginButtonEnabled
 
+    private val _isLoading = MutableLiveData<Boolean>()
+    val isLoading: LiveData<Boolean> = _isLoading
 
-    fun loginUser(userPhoneNumber: String, userPassword: String) {
+
+    fun loginUser() {
         viewModelScope.launch {
-            val user: UserLoginResponse = loginUserCase(userPhoneNumber, userPassword)
+            val user: UserLoginResponse =
+                loginUserCase(userPhoneNumber.value!!, userPassword.value!!)
             _userName.postValue(user.userName)
             _userId.postValue(user.userId)
             _userAbleToLogin.postValue(user.ableToLogin)

@@ -34,6 +34,10 @@ fun LoginScreen(userLoginViewModel: UserLoginViewModel) {
         .userPassword
         .observeAsState(initial = "")
 
+    val isLoginButtonEnabled by userLoginViewModel
+        .isLoginButtonEnabled
+        .observeAsState(initial = false)
+
     Scaffold(
         topBar = {
             LoginTopBar()
@@ -52,7 +56,7 @@ fun LoginScreen(userLoginViewModel: UserLoginViewModel) {
                 )
             }
             RememberUserToggle()
-            LoginButton()
+            LoginButton(isLoginButtonEnabled, userLoginViewModel)
         }
     }
 }
@@ -187,7 +191,10 @@ fun RememberUserToggle() {
 }
 
 @Composable
-fun LoginButton() {
+fun LoginButton(
+    isLoginButtonEnabled: Boolean,
+    loginViewModel: UserLoginViewModel
+) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -195,12 +202,15 @@ fun LoginButton() {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Button(
-            onClick = { /*TODO*/ },
+            onClick = {
+                      loginViewModel.loginUser()
+            },
             colors = ButtonDefaults.buttonColors(backgroundColor = Color.Black),
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 70.dp)
-                .height(60.dp)
+                .height(60.dp),
+            enabled = isLoginButtonEnabled
         ) {
             Text(
                 text = "Login",

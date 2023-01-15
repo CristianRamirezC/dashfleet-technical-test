@@ -28,9 +28,6 @@ class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val phoneNumber: String = "3136756532"
-        userLoginViewModel.loginUser(phoneNumber, "dashfleet2")
-        userRoutesViewModel.getUserRoutes(phoneNumber)
 
         setContent {
             DashfleetTechnicalTestTheme {
@@ -39,30 +36,21 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    LoginScreen(userLoginViewModel)
-//                    Greeting(userViewModel, userRoutesViewModel)
+                    val isUserLogged by userLoginViewModel.userAbleToLogin.observeAsState(initial = false)
+                    if (isUserLogged) {
+                        HomeScreen()
+                    } else {
+                        LoginScreen(userLoginViewModel)
+                    }
+//
                 }
             }
         }
     }
 }
 
+
 @Composable
-fun Greeting(userViewModel: UserLoginViewModel, userRoutesViewModel: UserRoutesViewModel) {
-
-    val name: String by userViewModel.userName.observeAsState(initial = "")
-    val userRoutes: UserRoutes by userRoutesViewModel.userRoutes.observeAsState(
-        initial = UserRoutes(
-            null,
-            null
-        )
-    )
-    Column() {
-        Text(text = "Hello $name!")
-        userRoutes.routes?.forEach { route ->
-            Text(text = route.routeName)
-        }
-    }
-
-
+fun HomeScreen() {
+    Text(text = "Home Screen")
 }
