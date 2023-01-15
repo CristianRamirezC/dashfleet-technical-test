@@ -1,5 +1,6 @@
 package com.example.dashfleet_technical_test.ui.view.loginScreen
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
@@ -151,9 +152,11 @@ fun RememberUserToggle(isErrorLogging: Boolean) {
         }
         if (isErrorLogging) {
             Text(
-                modifier = Modifier.align(Alignment.CenterHorizontally),
-                text = "Please verify your login information",
+                modifier = Modifier,
+                text = "Please verify your login information or network connection!",
                 color = Color.Red,
+                textAlign = TextAlign.Center,
+                fontWeight = FontWeight.Bold
             )
         }
     }

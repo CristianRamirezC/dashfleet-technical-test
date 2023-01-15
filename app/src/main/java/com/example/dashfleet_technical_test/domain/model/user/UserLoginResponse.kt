@@ -6,7 +6,8 @@ data class UserLoginResponse(
     val userId: Long?,
     val userName: String?,
     val userPhoneNumber: String?,
-    val ableToLogin: Boolean
+    val ableToLogin: Boolean,
+    val connectionError: Boolean = false,
 )
 
 //Mapper from UserLoginResponseModel (Data layer Model) to UserLoginResponse(Domain model)
