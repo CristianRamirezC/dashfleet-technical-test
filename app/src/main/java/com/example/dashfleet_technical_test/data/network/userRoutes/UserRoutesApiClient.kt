@@ -11,16 +11,17 @@ class UserRoutesApiClient @Inject constructor(
     private val db: FirebaseFirestore
 ) {
     suspend fun getUserRoutes(userPhoneNumber: String): UserRoutesModel {
-        val userRoutes = db.
-        collection(FirestoreConstants.USER_ROUTES).
-        document(userPhoneNumber).
-        get().
-        await().
-        toObject(UserRoutesModel::class.java)
+        return try {
+            val userRoutes =
+                db.collection(FirestoreConstants.USER_ROUTES).document(userPhoneNumber).get()
+                    .await().toObject(UserRoutesModel::class.java)
 
-        return UserRoutesModel(
-            routes = userRoutes?.routes,
-            userId = userRoutes?.userId
-        )
+            UserRoutesModel(
+                routes = userRoutes?.routes,
+                userId = userRoutes?.userId
+            )
+        } catch (e: Exception) {
+            UserRoutesModel()
+        }
     }
 }

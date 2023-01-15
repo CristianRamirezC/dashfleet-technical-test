@@ -1,6 +1,5 @@
-package com.example.dashfleet_technical_test.domain.userRoutes.userRoutes
+package com.example.dashfleet_technical_test.domain.userRoutes
 
-import com.example.dashfleet_technical_test.data.model.userRoutes.UserRoutesModel
 import com.example.dashfleet_technical_test.data.repository.userRoutes.UserRoutesRepository
 import com.example.dashfleet_technical_test.domain.model.userRoutes.UserRoutes
 import javax.inject.Inject
