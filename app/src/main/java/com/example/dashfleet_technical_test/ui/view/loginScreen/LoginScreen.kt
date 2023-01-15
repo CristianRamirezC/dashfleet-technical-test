@@ -111,8 +111,6 @@ fun PhoneNumberField(userPhoneNumber: String, onTextChanged: (String) -> Unit) {
             singleLine = true,
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Phone),
             colors = TextFieldDefaults.outlinedTextFieldColors(
-                textColor = Color.Black,
-                backgroundColor = Color.White,
                 focusedBorderColor = Color.Gray,
                 unfocusedBorderColor = Color.Gray
             )
@@ -140,8 +138,6 @@ fun PasswordField(userPassord: String, onTextChanged: (String) -> Unit) {
             singleLine = true,
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
             colors = TextFieldDefaults.outlinedTextFieldColors(
-                textColor = Color.Black,
-                backgroundColor = Color.White,
                 focusedBorderColor = Color.Gray,
                 unfocusedBorderColor = Color.Gray
             ),
@@ -203,9 +199,8 @@ fun LoginButton(
     ) {
         Button(
             onClick = {
-                      loginViewModel.loginUser()
+                loginViewModel.loginUser()
             },
-            colors = ButtonDefaults.buttonColors(backgroundColor = Color.Black),
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 70.dp)
@@ -214,7 +209,6 @@ fun LoginButton(
         ) {
             Text(
                 text = "Login",
-                color = Color.White,
                 fontSize = 25.sp
             )
         }
