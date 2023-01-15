@@ -23,7 +23,7 @@ fun MainNavigationScreenView(
     userRoutesViewModel: UserRoutesViewModel
 ) {
     val isLoadingLogin by userLoginViewModel.isLoading.observeAsState(initial = false)
-    val isLoadingGetRoutes by userLoginViewModel.isLoading.observeAsState(initial = false)
+    val isLoadingGetRoutes by userRoutesViewModel.isLoading.observeAsState(initial = false)
 
     val navController: NavHostController = rememberNavController()
     val scaffoldState: ScaffoldState = rememberScaffoldState()
