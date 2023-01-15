@@ -13,7 +13,7 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
 
 @Composable
-fun MainBottomNavigation(navController: NavController, bottomNavItems: List<NavItem>) {
+fun BottomNavigationDrawer(navController: NavController, bottomNavItems: List<NavItem>) {
     BottomNavigation(
         backgroundColor = Color.White,
         contentColor = Color.Black

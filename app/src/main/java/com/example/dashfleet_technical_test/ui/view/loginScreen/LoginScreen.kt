@@ -1,6 +1,5 @@
 package com.example.dashfleet_technical_test.ui.view.loginScreen
 
-import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.runtime.*
@@ -36,18 +35,20 @@ fun LoginScreen(userLoginViewModel: UserLoginViewModel) {
             LoginTopBar()
         },
         modifier = Modifier.fillMaxSize()
-    ) {
-
+    ) { paddingValues ->
         Column(
-            modifier = Modifier.padding(top = it.calculateTopPadding())
+            modifier = Modifier.padding(top = paddingValues.calculateTopPadding())
         ) {
-            PhoneNumberField(userPhoneNumber = userPhoneNumber) {
-                userLoginViewModel.onLoginChanged(userPhoneNumber = it, userPassword = userPassword)
+            PhoneNumberField(userPhoneNumber = userPhoneNumber) { phoneNumber ->
+                userLoginViewModel.onLoginChanged(
+                    userPhoneNumber = phoneNumber,
+                    userPassword = userPassword
+                )
             }
-            PasswordField(userPassord = userPassword) {
+            PasswordField(userPassword = userPassword) { password ->
                 userLoginViewModel.onLoginChanged(
                     userPhoneNumber = userPhoneNumber,
-                    userPassword = it
+                    userPassword = password
                 )
             }
             RememberUserToggle(isErrorLogging)

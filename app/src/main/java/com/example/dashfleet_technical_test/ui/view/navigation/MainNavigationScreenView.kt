@@ -7,7 +7,7 @@ import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
-import com.example.dashfleet_technical_test.ui.view.navigation.bottomNavigation.MainBottomNavigation
+import com.example.dashfleet_technical_test.ui.view.navigation.bottomNavigation.BottomNavigationDrawer
 import com.example.dashfleet_technical_test.ui.view.navigation.bottomNavigation.NavItem
 import com.example.dashfleet_technical_test.ui.view.navigation.bottomNavigation.NavigationGraph
 import com.example.dashfleet_technical_test.ui.view.navigation.SideNavigation.Drawer
@@ -35,7 +35,7 @@ fun MainNavigationScreenView(
     )
     Scaffold(
         bottomBar = {
-            MainBottomNavigation(navController = navController, bottomNavItems = routeDestinations)
+            BottomNavigationDrawer(navController = navController, bottomNavItems = routeDestinations)
         },
         scaffoldState = scaffoldState,
         topBar = {

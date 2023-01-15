@@ -39,21 +39,28 @@ fun UserScreen(
             fontWeight = FontWeight.ExtraBold
         )
         Spacer(modifier = Modifier.height(30.dp))
-        Button(
-            modifier = Modifier
-                .height(50.dp)
-                .fillMaxWidth()
-                .padding(horizontal = 40.dp),
-            onClick = {
-                userLoginViewModel.logout()
-            },
-        ) {
-            Text(
-                modifier = Modifier,
-                text = AppStringConstants.LOGOUT,
-                fontSize = 20.sp,
-                fontWeight = FontWeight.ExtraBold
-            )
-        }
+        LogoutButton(userLoginViewModel)
+    }
+}
+
+@Composable
+fun LogoutButton(
+    userLoginViewModel: UserLoginViewModel,
+) {
+    Button(
+        modifier = Modifier
+            .height(50.dp)
+            .fillMaxWidth()
+            .padding(horizontal = 40.dp),
+        onClick = {
+            userLoginViewModel.logout()
+        },
+    ) {
+        Text(
+            modifier = Modifier,
+            text = AppStringConstants.LOGOUT,
+            fontSize = 20.sp,
+            fontWeight = FontWeight.ExtraBold
+        )
     }
 }

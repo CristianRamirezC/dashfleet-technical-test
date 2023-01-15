@@ -82,7 +82,7 @@ fun PhoneNumberField(userPhoneNumber: String, onTextChanged: (String) -> Unit) {
 }
 
 @Composable
-fun PasswordField(userPassord: String, onTextChanged: (String) -> Unit) {
+fun PasswordField(userPassword: String, onTextChanged: (String) -> Unit) {
     var isPasswordVisible: Boolean by rememberSaveable { mutableStateOf(false) }
     Column(
         modifier = Modifier
@@ -91,7 +91,7 @@ fun PasswordField(userPassord: String, onTextChanged: (String) -> Unit) {
     ) {
         Text(text = AppStringConstants.PASSWORD)
         OutlinedTextField(
-            value = userPassord, onValueChange = {
+            value = userPassword, onValueChange = {
                 onTextChanged(it)
             },
             modifier = Modifier
