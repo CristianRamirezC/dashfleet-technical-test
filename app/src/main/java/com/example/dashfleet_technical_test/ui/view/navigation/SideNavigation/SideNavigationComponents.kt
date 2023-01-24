@@ -61,7 +61,7 @@ fun DrawerHeader(
     userLoginViewModel: UserLoginViewModel
 ) {
 
-    val userName by userLoginViewModel.userName.observeAsState()
+    val userName by userLoginViewModel.userName.observeAsState(initial = "")
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -82,7 +82,7 @@ fun DrawerHeader(
         Spacer(modifier = Modifier.height(20.dp))
         Text(
             modifier = Modifier.align(Alignment.CenterHorizontally),
-            text = userName!!, fontSize = 20.sp
+            text = userName, fontSize = 20.sp
         )
     }
 }

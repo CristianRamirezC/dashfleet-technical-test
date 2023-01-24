@@ -18,8 +18,8 @@ import com.example.dashfleet_technical_test.ui.viewModel.user.UserLoginViewModel
 fun UserScreen(
     userLoginViewModel: UserLoginViewModel,
 ) {
-    val userName by userLoginViewModel.userName.observeAsState()
-    val userPhoneNumber by userLoginViewModel.userPhoneNumber.observeAsState()
+    val userName: String by userLoginViewModel.userName.observeAsState(initial = "")
+    val userPhoneNumber: String by userLoginViewModel.userPhoneNumber.observeAsState(initial = "")
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -27,14 +27,14 @@ fun UserScreen(
     ) {
         Text(
             modifier = Modifier.align(Alignment.CenterHorizontally),
-            text = userName!!,
+            text = userName,
             fontSize = 30.sp,
             fontWeight = FontWeight.ExtraBold
         )
         Spacer(modifier = Modifier.height(10.dp))
         Text(
             modifier = Modifier.align(Alignment.CenterHorizontally),
-            text = userPhoneNumber!!,
+            text = userPhoneNumber,
             fontSize = 25.sp,
             fontWeight = FontWeight.ExtraBold
         )

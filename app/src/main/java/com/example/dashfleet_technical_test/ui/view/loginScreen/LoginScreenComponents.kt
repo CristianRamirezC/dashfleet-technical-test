@@ -170,8 +170,8 @@ fun LoginButton(
     isLoading: Boolean
 ) {
 
-    val userPhoneNumber by loginViewModel.userPhoneNumber.observeAsState()
-    val userPassword by loginViewModel.userPassword.observeAsState()
+    val userPhoneNumber by loginViewModel.userLoginPhoneNumber.observeAsState()
+    val userPassword by loginViewModel.userLoginPassword.observeAsState()
 
     Column(
         modifier = Modifier

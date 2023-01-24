@@ -72,8 +72,8 @@ fun TopBarUserInfo(
     userLoginViewModel: UserLoginViewModel,
 ) {
 
-    val userName by userLoginViewModel.userName.observeAsState()
-    val userPhoneNumber by userLoginViewModel.userPhoneNumber.observeAsState()
+    val userName: String by userLoginViewModel.userName.observeAsState(initial = "")
+    val userPhoneNumber: String by userLoginViewModel.userPhoneNumber.observeAsState(initial = "")
     Column(
         modifier = Modifier
     ) {
@@ -85,7 +85,7 @@ fun TopBarUserInfo(
         Spacer(modifier = Modifier.height(6.dp))
         Text(
             modifier = Modifier,
-            text = userPhoneNumber!!
+            text = userPhoneNumber
         )
     }
 }
