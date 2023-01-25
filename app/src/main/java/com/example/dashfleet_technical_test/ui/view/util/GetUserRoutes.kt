@@ -12,7 +12,7 @@ fun GetUserRoutes(
     userRoutesViewModel: UserRoutesViewModel
 ) {
     val userPhoneNumber by userLoginViewModel
-        .userPhoneNumber
+        .userLoginPhoneNumber
         .observeAsState()
 
     userRoutesViewModel.getUserRoutes(userPhoneNumber!!)

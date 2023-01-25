@@ -1,5 +1,7 @@
 package com.example.dashfleet_technical_test.ui.view.loginScreen
 
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
@@ -13,8 +15,12 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.input.pointer.pointerInput
+import androidx.compose.ui.platform.LocalFocusManager
+import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
@@ -54,7 +60,6 @@ fun LoginTopBar() {
         }
     }
 }
-
 
 @Composable
 fun PhoneNumberField(userPhoneNumber: String, onTextChanged: (String) -> Unit) {
@@ -133,11 +138,14 @@ fun PasswordField(userPassword: String, onTextChanged: (String) -> Unit) {
 fun RememberUserToggle(isErrorLogging: Boolean) {
     var rememberToggle: Boolean by rememberSaveable { mutableStateOf(false) }
     Column(
-        modifier = Modifier.fillMaxWidth()
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(20.dp)
     ) {
         Row(
-            modifier = Modifier.padding(top = 20.dp, start = 15.dp),
-            verticalAlignment = Alignment.CenterVertically
+            modifier = Modifier
+//                .padding(top = 20.dp, start = 15.dp),
+            , verticalAlignment = Alignment.CenterVertically
 
         ) {
             Switch(
@@ -170,13 +178,13 @@ fun LoginButton(
     isLoading: Boolean
 ) {
 
-    val userPhoneNumber by loginViewModel.userPhoneNumber.observeAsState()
+    val userPhoneNumber by loginViewModel.userLoginPhoneNumber.observeAsState()
     val userPassword by loginViewModel.userPassword.observeAsState()
 
     Column(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(top = 30.dp),
+            .padding(top = 10.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Button(
@@ -191,8 +199,9 @@ fun LoginButton(
         ) {
             if (!isLoading) {
                 Text(
+                    modifier = Modifier,
                     text = AppStringConstants.LOGIN,
-                    fontSize = 25.sp
+                    fontSize = 25.sp,
                 )
             } else {
                 Box(modifier = Modifier) {

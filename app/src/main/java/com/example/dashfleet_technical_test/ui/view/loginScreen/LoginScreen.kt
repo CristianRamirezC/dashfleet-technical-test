@@ -11,7 +11,7 @@ import com.example.dashfleet_technical_test.ui.viewModel.user.UserLoginViewModel
 fun LoginScreen(userLoginViewModel: UserLoginViewModel) {
 
     val userPhoneNumber: String by userLoginViewModel
-        .userPhoneNumber
+        .userLoginPhoneNumber
         .observeAsState(initial = "")
 
     val userPassword: String by userLoginViewModel

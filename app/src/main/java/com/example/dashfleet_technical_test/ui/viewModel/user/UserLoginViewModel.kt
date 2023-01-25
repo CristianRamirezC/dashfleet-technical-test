@@ -21,6 +21,9 @@ class UserLoginViewModel @Inject constructor(
     private var _userPhoneNumber = MutableLiveData<String>()
     val userPhoneNumber: LiveData<String> = _userPhoneNumber
 
+    private var _userLoginPhoneNumber = MutableLiveData<String>()
+    val userLoginPhoneNumber: LiveData<String> = _userLoginPhoneNumber
+
     private var _userId = MutableLiveData<Long>()
     val userId: LiveData<Long> = _userId
 
@@ -73,13 +76,14 @@ class UserLoginViewModel @Inject constructor(
         _userId.postValue(0L)
         _userAbleToLogin.postValue(false)
         _userPhoneNumber.postValue("")
+        _userLoginPhoneNumber.postValue("")
 
         _isLoading.postValue(false)
 
     }
 
     fun onLoginChanged(userPhoneNumber: String, userPassword: String) {
-        _userPhoneNumber.value = userPhoneNumber
+        _userLoginPhoneNumber.value = userPhoneNumber
         _userPassword.value = userPassword
 
         _isLoginButtonEnabled.value = enableLoginButton(userPhoneNumber, userPassword)

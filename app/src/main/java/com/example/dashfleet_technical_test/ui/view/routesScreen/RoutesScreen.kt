@@ -19,6 +19,7 @@ import com.example.dashfleet_technical_test.domain.model.userRoutes.Route
 import com.example.dashfleet_technical_test.ui.viewModel.userRoutes.UserRoutesViewModel
 import com.example.dashfleet_technical_test.R
 import com.example.dashfleet_technical_test.core.constants.AppStringConstants
+import com.example.dashfleet_technical_test.domain.model.userRoutes.UserRoutes
 
 
 @Composable
@@ -26,7 +27,9 @@ fun RoutesScreen(
     userRoutesViewModel: UserRoutesViewModel,
     paddingValues: PaddingValues
 ) {
-    val userRoutes by userRoutesViewModel.userRoutes.observeAsState()
+    val userRoutes by userRoutesViewModel
+        .userRoutes
+        .observeAsState(initial = UserRoutes())
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -49,7 +52,7 @@ fun RoutesScreen(
         ) {
             LazyColumn {
                 items(
-                    items = userRoutes?.routes!!,
+                    items = userRoutes.routes!!,
                     itemContent = { item ->
                         RenderRouteItem(route = item)
                     }

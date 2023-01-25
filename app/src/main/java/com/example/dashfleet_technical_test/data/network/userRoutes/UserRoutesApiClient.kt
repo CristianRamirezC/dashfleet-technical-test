@@ -13,8 +13,12 @@ class UserRoutesApiClient @Inject constructor(
     suspend fun getUserRoutes(userPhoneNumber: String): UserRoutesModel {
         return try {
             val userRoutes =
-                db.collection(FirestoreConstants.USER_ROUTES).document(userPhoneNumber).get()
-                    .await().toObject(UserRoutesModel::class.java)
+                db
+                    .collection(FirestoreConstants.USER_ROUTES)
+                    .document(userPhoneNumber)
+                    .get()
+                    .await()
+                    .toObject(UserRoutesModel::class.java)
 
             UserRoutesModel(
                 routes = userRoutes?.routes,
