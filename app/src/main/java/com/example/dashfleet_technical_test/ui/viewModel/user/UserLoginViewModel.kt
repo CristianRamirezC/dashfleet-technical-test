@@ -8,6 +8,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.dashfleet_technical_test.domain.model.user.UserLoginResponse
 import com.example.dashfleet_technical_test.domain.user.LoginUserFirestoreUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
+import io.reactivex.rxjava3.core.Observable
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -41,6 +42,7 @@ class UserLoginViewModel @Inject constructor(
 
 
     fun loginUser(userPhoneNumber: String, userPassword: String) {
+
         viewModelScope.launch {
             _isLoading.postValue(true)
             val user: UserLoginResponse =

@@ -7,6 +7,9 @@ import androidx.lifecycle.viewModelScope
 import com.example.dashfleet_technical_test.domain.model.userRoutes.UserRoutes
 import com.example.dashfleet_technical_test.domain.userRoutes.GetUserRoutesFirestoreUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.core.Observable
+import io.reactivex.rxjava3.schedulers.Schedulers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -22,11 +25,19 @@ class UserRoutesViewModel @Inject constructor(
 
 
     fun getUserRoutes(userPhoneNumber: String) {
-        viewModelScope.launch {
-            _isLoading.postValue(true)
-            val userRoutes: UserRoutes = getUserRoutesFirestoreUseCase(userPhoneNumber)
-            _userRoutes.postValue(userRoutes)
-            _isLoading.postValue(false)
-        }
+
+        val userRoutesObservable = getUserRoutesFirestoreUseCase(userPhoneNumber)
+
+        userRoutesObservable
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+
+//        viewModelScope.launch {
+//            _isLoading.postValue(true)
+//            val userRoutes: UserRoutes = getUserRoutesFirestoreUseCase(userPhoneNumber)
+//            _userRoutes.postValue(userRoutes)
+//            _isLoading.postValue(false)
+//        }
+
     }
 }
