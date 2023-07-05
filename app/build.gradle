@@ -24,11 +24,34 @@ android {
     }
 
     buildTypes {
+        debug {
+            applicationIdSuffix ".debug"    //we can add suffix to the applicationId
+            debuggable true
+        }
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            debuggable false
         }
     }
+
+    flavorDimensions "paidMode"
+    productFlavors {
+        free {
+            dimension "paidMode"
+            applicationIdSuffix ".free"
+            versionNameSuffix "-free"
+            buildConfigField 'String', 'URL', '"www.endpointFreeVersion.com"'
+        }
+
+        paid {
+            dimension "paidMode"
+            applicationIdSuffix ".paid"
+            versionNameSuffix "-paid"
+            buildConfigField 'String', 'URL', '"www.endpointPaidVersion.com"'
+        }
+    }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -84,6 +107,9 @@ dependencies {
 
     //FireStore
     implementation "com.google.firebase:firebase-firestore:24.4.1"
+
+    //google services
+    implementation 'com.google.gms:google-services:4.3.15'
 
     //Testing
     testImplementation 'junit:junit:4.13.2'
