@@ -2,6 +2,7 @@ package com.example.dashfleet_technical_test.domain.user
 
 import com.example.dashfleet_technical_test.data.repository.user.UserRepository
 import com.example.dashfleet_technical_test.domain.model.user.UserLoginResponse
+import com.example.dashfleet_technical_test.domain.model.user.toDomain
 import javax.inject.Inject
 
 class LoginUserFirestoreUseCase @Inject constructor(
@@ -11,6 +12,6 @@ class LoginUserFirestoreUseCase @Inject constructor(
         return repository.loginUserFirestore(
             userPhoneNumber = userPhoneNumber,
             userPassword = userPassword
-        )
+        ).toDomain()
     }
 }

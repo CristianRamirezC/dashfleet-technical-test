@@ -9,7 +9,7 @@ import javax.inject.Inject
 class UserRoutesRepository @Inject constructor(
     private val api: UserRoutesService
 ) {
-    suspend fun getUserRouteFirestore(userPhoneNumber: String): UserRoutes {
-        return api.getUserRoutes(userPhoneNumber).toDomain()
+    suspend fun getUserRouteFirestore(userPhoneNumber: String): UserRoutesModel {
+        return api.getUserRoutes(userPhoneNumber)
     }
 }

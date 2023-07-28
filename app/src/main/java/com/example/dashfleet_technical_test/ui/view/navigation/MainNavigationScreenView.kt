@@ -1,4 +1,4 @@
-package com.example.dashfleet_technical_test.ui.view.bottomNavigation
+package com.example.dashfleet_technical_test.ui.view.navigation
 
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
